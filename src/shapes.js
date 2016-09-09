@@ -3,30 +3,26 @@ var COLORS =  consts.COLORS;
 var COLUMN_COUNT = consts.COLUMN_COUNT;
 
 /**
-	Defined all shapes used in Tetris game. 
+	Defined all shapes used in Tetris game.
 	You can add more shapes if you wish.
 */
 
-function ShapeL(){
-	var state1 = [  [1, 0],
-					[1, 0],
-					[1, 1] ];
+function Shape(days){
+	var shape;
+	switch(days)
+	{
+		case 0: shape = [ [1] ];			break;
+		case 1: shape = [ [1, 1] ];			break;
+		case 2: shape = [ [1, 1, 1] ];			break;
+		case 3: shape = [ [1, 1, 1, 1] ];			break;
+		case 4: shape = [ [1, 1, 1, 1, 1] ];			break;
 
-	var state2 = [  [0, 0, 1],
-					[1, 1, 1] ];
+	}
 
-	var state3 = [  [1, 1],
-					[0, 1],
-					[0, 1] ];
-
-	var state4 = [  [1, 1, 1],
-					[1, 0, 0] ];
-
-
-	this.states = [ state1, state2, state3, state4 ];
-	this.x = 4;
-	this.y = -3;
-	this.flag = 'L';
+	this.states = [ shape ];
+	this.x = days + 1;
+	this.y = -1
+	this.flag = days;
 }
 
 function ShapeLR()
@@ -258,7 +254,7 @@ ShapeZR.prototype = {
 	canDown:function(matrix){
 		return isShapeCanMove(this,matrix,'down');
 	},
-	//Move the shape down 
+	//Move the shape down
 	goDown:function(matrix){
 		if (isShapeCanMove(this,matrix,'down')){
 			this.y+=1;
@@ -306,18 +302,8 @@ ShapeZR.prototype = {
 function randomShape()
 {
 	var result = Math.floor( Math.random() * 7 );
-	var shape;
+	var shape = new Shape(result);
 
-	switch(result)
-	{
-		case 0: shape = new ShapeL();			break;
-		case 1: shape = new ShapeO();			break;
-		case 2: shape = new ShapeZ();			break;
-		case 3: shape = new ShapeT();			break;
-		case 4: shape = new ShapeLR();			break;
-		case 5: shape = new ShapeZR();			break;
-		case 6: shape = new ShapeI();			break;
-	}
 	shape.init();
 	return shape;
 }
