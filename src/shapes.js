@@ -25,110 +25,6 @@ function Shape(days){
 	this.flag = days;
 }
 
-function ShapeLR()
-{
-	var state1 = [  [0, 1],
-					[0, 1],
-					[1, 1] ];
-
-	var state2 = [  [1, 1, 1],
-					[0, 0, 1] ];
-
-	var state3 = [  [1, 1],
-					[1, 0],
-					[1, 0] ];
-
-	var state4 = [  [1, 0, 0],
-					[1, 1, 1] ];
-
-
-	this.states = [ state1, state2, state3, state4 ];
-	this.x = 4;
-	this.y = -3;
-	this.flag = 'LR';
-}
-
-function ShapeO()
-{
-
-	var state1 = [  [1, 1],
-					[1, 1] ];
-
-
-	this.states = [ state1 ];
-	this.x = 4;
-	this.y = -2;
-	this.flag = 'O';
-}
-
-function ShapeI()
-{
-	var state1 = [  [1],
-					[1],
-					[1],
-					[1] ];
-
-	var state2 = [  [1,1,1,1] ];
-
-	this.states = [ state1, state2 ];
-
-	this.x = 5;
-	this.y = -4;
-	this.flag = 'I';
-}
-
-function ShapeT()
-{
-	var state1 = [  [1, 1, 1],
-					[0, 1, 0] ];
-
-	var state2 = [  [1, 0],
-					[1, 1],
-					[1, 0] ];
-
-	var state3 = [  [0, 1, 0],
-					[1, 1, 1] ];
-
-	var state4 = [  [0, 1],
-					[1, 1],
-					[0, 1] ];
-
-	this.states = [ state1, state2, state3, state4 ];
-	this.x = 4;
-	this.y = -2;
-	this.flag = 'T';
-}
-
-function ShapeZ()
-{
-	var state1 = [  [1, 1, 0],
-					[0, 1, 1] ];
-
-	var state2 = [  [0, 1],
-					[1, 1],
-					[1, 0] ];
-
-	this.states = [ state1, state2 ];
-	this.x = 4;
-	this.y = -2;
-	this.flag = 'Z';
-}
-
-function ShapeZR()
-{
-	var state1 = [  [0, 1, 1],
-					[1, 1, 0] ];
-
-	var state2 = [  [1, 0],
-					[1, 1],
-					[0, 1] ];
-
-	this.states = [ state1, state2 ];
-	this.x = 4;
-	this.y = -2;
-	this.flag = 'ZR';
-}
-
 /**
 Is shape can move
 @param shape: tetris shape
@@ -173,13 +69,8 @@ var isShapeCanMove = function(shape,matrix,action){
 /**
  All shapes shares the same method, use prototype for memory optimized
 */
-ShapeL.prototype =
-ShapeLR.prototype =
-ShapeO.prototype =
-ShapeI.prototype =
-ShapeT.prototype =
-ShapeZ.prototype =
-ShapeZR.prototype = {
+
+Shape.prototype = {
 
 	init:function(){
 		this.color = COLORS[Math.floor(Math.random() * 7)];
@@ -301,7 +192,7 @@ ShapeZR.prototype = {
 */
 function randomShape()
 {
-	var result = Math.floor( Math.random() * 7 );
+	var result = Math.floor( Math.random() * 5 );
 	var shape = new Shape(result);
 
 	shape.init();
