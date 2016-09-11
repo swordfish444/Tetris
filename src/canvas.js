@@ -2,8 +2,9 @@
 var utils = require('./utils.js');
 var consts = require('./consts.js');
 
-
+var person = consts.PERSON;
 var lineColor =  consts.GRID_LINE_COLOR;
+var peopleLineColor = consts.PEOPLE_GRID_LINE_COLOR;
 
 var boxBorderColor = consts.BOX_BORDER_COLOR;
 
@@ -24,30 +25,42 @@ var drawLine = function(ctx,p1,p2,color){
 
 //Draw game grids
 var drawGrids = function(el,gridSize,colCount,rowCount,color1,color2){
+  var ctx = el.getContext('2d');
+  var width = el.width;
+  var height = el.height;
+  var peopleCount = 0;
+  ctx.rect(0, 0, width, height);
+
+  var grd = ctx.createLinearGradient(0, 0, 0, height);
+  grd.addColorStop(0, color1);
+  grd.addColorStop(1, color2);
+  ctx.fillStyle = grd;
+  ctx.fill();
 
 
+  // for (var i = 1; i < colCount; i++) {
+  // 		var x = gridSize*i+0.5;
+  // 	drawLine(ctx,{x:x,y:0},{x:x,y:height},lineColor);
+  // };
+  for (var i = 1; i < rowCount; i++) {
+  	var y = gridSize*i+0.5;
+  	drawLine(ctx,{x:0,y:y},{x:width,y:y},lineColor);
+  };
 
-	  var ctx = el.getContext('2d');
-	  var width = el.width;
-	  var height = el.height;
+  // draw people grid
+  // max 20 rows in game
+  // this includes game grid + people grid
+  for (var i = rowCount; i < 20; i++) {
+    if(i%2 == 0){
+      peopleCount++;
+      var y = gridSize*i+0.5;
+      drawLine(ctx,{x:0,y:y},{x:width,y:y},peopleLineColor);
+    }
+  };
 
-	  ctx.rect(0, 0, width, height);
+  // update height of people container
+  document.getElementById('people').style.height = peopleCount*person.height + 'px';
 
-      var grd = ctx.createLinearGradient(0, 0, 0, height);
-      grd.addColorStop(0, color1);
-      grd.addColorStop(1, color2);
-      ctx.fillStyle = grd;
-      ctx.fill();
-
-
-	  for (var i = 1; i < colCount; i++) {
-	  		var x = gridSize*i+0.5;
-			drawLine(ctx,{x:x,y:0},{x:x,y:height},lineColor);
-	  };
-	  for (var i = 1; i < rowCount; i++) {
-			var y = gridSize*i+0.5;
-			drawLine(ctx,{x:0,y:y},{x:width,y:y},lineColor);
-	  };
 };
 
 //Draw box of shape (shape is the composition of boxes)

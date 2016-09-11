@@ -1,0 +1,23 @@
+{
+  "name": "10k-tetris",
+  "version": "1.0.0",
+  "description": "This is a small html5 tetris game , written by pure javascript and html5 canvas,modular by browserify.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack src/main.js dist/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swordfish444/Tetris.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swordfish444/Tetris/issues"
+  },
+  "homepage": "https://github.com/swordfish444/Tetris#readme",
+  "devDependencies": {
+    "webpack": "^1.13.2"
+  }
+}

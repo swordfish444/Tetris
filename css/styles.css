@@ -15,7 +15,7 @@ body{
 	top:50%;
 	position: absolute;
 	background: #555;
-	
+
 }
 
 #scene{
@@ -56,13 +56,13 @@ body{
 }
 
 #info{
-	width:120px;
+	width:55px;
 	margin:0 auto;
 }
 
 #preview{
-	width:80px;
-	height:80px;
+	width:55px;
+	height:55px;
 	background: #2f2f2f;
 	margin:10px auto;
 }
@@ -72,6 +72,18 @@ body{
 	font-size:18px;
 	margin:10px 0;
 }
+
+#people {
+    color: #fff;
+    font-size: 14px;
+    background-color: #ffffff;
+    z-index: 10000000;
+    height: 55px;
+    position: absolute;
+    bottom: 0;
+    width: 55px;
+}
+
 #level{
 	color:orange;
 	font-size:32px;

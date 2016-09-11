@@ -121,8 +121,8 @@ var calcIntervalByLevel = function(level){
 
 // Default max scene size
 var defaults = {
-	maxHeight:700,
-	maxWidth:600
+	maxHeight:550,
+	maxWidth:275
 };
 
 /**

@@ -33,6 +33,7 @@ var getContainerSize = function(maxW,maxH){
 	var dh = document.documentElement.clientHeight;
 
 	var size = {};
+
 	if (dw>dh){
 		size.height = Math.min(maxH,dh);
 		size.width = Math.min(size.height /2 + SIDE_WIDTH,maxW);

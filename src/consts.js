@@ -3,7 +3,7 @@
 var colors = ['#00aee5', '#00aee5', '#00aee5', '#00aee5', '#00aee5', '#00aee5', '#ff963f'];
 
 //sidebar width
-var sideWidth = 120;
+var sideWidth = 55;
 
 //scene column count
 var columnCount = 10;
@@ -12,7 +12,7 @@ var columnCount = 10;
 var rowCount = 14;
 
 //previewCount
-var previewCount = 6;
+var previewCount = 10;
 
 //scene gradient start color
 var sceneBgStart = '#8e9ba6';
@@ -26,6 +26,9 @@ var previewBg = '#2f2f2f';
 //grid line color
 var gridLineColor = 'rgba(233,233,233,0.2)';
 
+//people grid line color
+var peopleGridLineColor = 'rgba(0,174,229,0.7)';
+
 //box border color
 var boxBorderColor = 'rgba(255,255,255,0.5)';
 
@@ -35,7 +38,13 @@ var defaultInterval = 600;
 // Level update interval
 var levelInterval = 120 * 1000;
 
+var person = {
+  height: 55
+};
+
 var exports = module.exports = {};
+
+exports.PERSON = person;
 
 exports.COLORS =  colors;
 
@@ -54,6 +63,8 @@ exports.PREVIEW_BG = previewBg;
 exports.PREVIEW_COUNT = previewCount;
 
 exports.GRID_LINE_COLOR = gridLineColor;
+
+exports.PEOPLE_GRID_LINE_COLOR = peopleGridLineColor;
 
 exports.BOX_BORDER_COLOR = boxBorderColor;
 
