@@ -1,44 +1,39 @@
 
 //colors for shapes
-var colors = ['#00af9d','#ffb652','#cd66cc','#66bc29','#0096db','#3a7dda','#ffe100'];
+var colors = ['#00aee5', '#00aee5', '#00aee5', '#00aee5', '#00aee5', '#00aee5', '#ff963f'];
 
 //sidebar width
 var sideWidth = 120;
-
 
 //scene column count
 var columnCount = 10;
 
 //scene row count;
-var rowCount = 20;
+var rowCount = 14;
 
 //previewCount
 var previewCount = 6;
 
-//scene gradient start color 
+//scene gradient start color
 var sceneBgStart = '#8e9ba6';
 
-//scene gradient end color 
+//scene gradient end color
 var sceneBgEnd = '#5c6975';
 
 //preview background color
 var previewBg = '#2f2f2f';
 
 //grid line color
-var gridLineColor = 'rgba(255,255,255,0.2)';
+var gridLineColor = 'rgba(233,233,233,0.2)';
 
 //box border color
 var boxBorderColor = 'rgba(255,255,255,0.5)';
 
-
 // Game speed
 var defaultInterval = 600;
 
-
-// Level update interval 
-var levelInterval = 120 * 1000; 
-
-
+// Level update interval
+var levelInterval = 120 * 1000;
 
 var exports = module.exports = {};
 

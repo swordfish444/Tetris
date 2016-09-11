@@ -4,9 +4,6 @@ var shapes = require('./shapes.js');
 var views = require('./views.js');
 var canvas = require('./canvas.js');
 
-
-
-
 /**
 	Init game matrix
 */
@@ -52,11 +49,11 @@ var checkFullRows = function(matrix){
   		}
   	}
 
-  	return rowNumbers;	
+  	return rowNumbers;
 };
 
 /**
-	Remove one row from game matrix. 
+	Remove one row from game matrix.
 	copy each previous row data to  next row  which row number less than row;
 */
 var removeOneRow = function(matrix,row){
@@ -67,9 +64,9 @@ var removeOneRow = function(matrix,row){
 				matrix[i][j] = matrix[i-1][j];
 			}else{
 				matrix[i][j] = 0 ;
-			}	
+			}
 		}
-	}	
+	}
 };
 /**
 	Remove rows from game matrix by row numbers.
@@ -99,7 +96,7 @@ var checkGameOver = function(matrix){
 */
 var calcRewards = function(rows){
 	if (rows&&rows.length>1){
-		return Math.pow(2,rows.length - 1)*100;	
+		return Math.pow(2,rows.length - 1)*100;
 	}
 	return 0;
 };
@@ -139,11 +136,11 @@ function Tetris(id){
 Tetris.prototype = {
 
 	init:function(options){
-		
+
 		var cfg = this.config = utils.extend(options,defaults);
 		this.interval = consts.DEFAULT_INTERVAL;
-		
-		
+
+
 		views.init(this.id, cfg.maxWidth,cfg.maxHeight);
 
 		canvas.init(views.scene,views.preview);
@@ -189,10 +186,10 @@ Tetris.prototype = {
 	},
 	// All key event handlers
 	_keydownHandler:function(e){
-		
+
 		var matrix = this.matrix;
 
-		if(!e) { 
+		if(!e) {
 			var e = window.event;
 		}
 		if (this.isGameOver||!this.shape){
@@ -202,10 +199,10 @@ Tetris.prototype = {
 		switch(e.keyCode){
 			case 37:{this.shape.goLeft(matrix);this._draw();}
 			break;
-			
+
 			case 39:{this.shape.goRight(matrix);this._draw();}
 			break;
-			
+
 			case 38:{this.shape.rotate(matrix);this._draw();}
 			break;
 
@@ -234,10 +231,10 @@ Tetris.prototype = {
 		this._draw();
 		canvas.drawPreviewShape(this.preparedShape);
 	},
-	
+
 	// Draw game data
 	_draw:function(){
-		canvas.drawScene(); 
+		canvas.drawScene();
 		canvas.drawShape(this.shape);
 		canvas.drawMatrix(this.matrix);
 	},
@@ -253,7 +250,7 @@ Tetris.prototype = {
 			this._checkLevel();
 		}
 		if (!this.isGameOver){
-			window.requestAnimationFrame(utils.proxy(this._refresh,this));	
+			window.requestAnimationFrame(utils.proxy(this._refresh,this));
 		}
 	},
 	// Update game data
@@ -277,7 +274,7 @@ Tetris.prototype = {
 		var rows = checkFullRows(this.matrix);
 		if (rows.length){
 			removeRows(this.matrix,rows);
-			
+
 			var score = calcScore(rows);
 			var reward = calcRewards(rows);
 			this.score += score + reward;

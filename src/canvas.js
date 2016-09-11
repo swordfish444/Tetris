@@ -12,19 +12,20 @@ var drawLine = function(ctx,p1,p2,color){
 	  	    ctx.beginPath();
 			ctx.moveTo(p1.x,p1.y);
 			ctx.lineTo(p2.x,p2.y);
-			
+
 			ctx.lineWidth=1;
 			ctx.strokeStyle= color;
-			
+
 			ctx.stroke();
 			ctx.closePath();
+
 };
 
 
 //Draw game grids
 var drawGrids = function(el,gridSize,colCount,rowCount,color1,color2){
 
-	  
+
 
 	  var ctx = el.getContext('2d');
 	  var width = el.width;
@@ -33,11 +34,11 @@ var drawGrids = function(el,gridSize,colCount,rowCount,color1,color2){
 	  ctx.rect(0, 0, width, height);
 
       var grd = ctx.createLinearGradient(0, 0, 0, height);
-      grd.addColorStop(0, color1);   
+      grd.addColorStop(0, color1);
       grd.addColorStop(1, color2);
       ctx.fillStyle = grd;
       ctx.fill();
-      
+
 
 	  for (var i = 1; i < colCount; i++) {
 	  		var x = gridSize*i+0.5;
@@ -80,7 +81,7 @@ var tetrisCanvas = {
 		this.previewGridSize = preview.width / consts.PREVIEW_COUNT;
 
 		this.drawScene();
-		
+
 	},
 
 	//Clear game canvas
@@ -107,7 +108,7 @@ var tetrisCanvas = {
 					drawBox(this.sceneContext,row[j],j*this.gridSize,i*this.gridSize,this.gridSize);
 				}
 			}
-		}	
+		}
 	},
 	//Draw preview data
 	drawPreview:function(){

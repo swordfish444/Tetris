@@ -90,9 +90,9 @@ var tetrisView = {
 		 rewardInfo.className = 'invisible';
 	  });
 	},
-	// Update the score 
+	// Update the score
 	setScore:function(scoreNumber){
-		score.innerHTML = scoreNumber;	
+		score.innerHTML = scoreNumber;
 	},
 	// Update the finnal score
 	setFinalScore:function(scoreNumber){
@@ -106,7 +106,7 @@ var tetrisView = {
 	setReward:function(rewardScore){
 		if (rewardScore>0){
 			reward.innerHTML = rewardScore;
-			rewardInfo.className = 'fadeOutUp animated';	
+			rewardInfo.className = 'fadeOutUp animated';
 		}else{
 			rewardInfo.className = 'invisible';
 		}
