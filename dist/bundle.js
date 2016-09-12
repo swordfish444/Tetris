@@ -488,10 +488,10 @@
 	var previewCount = 10;
 
 	//scene gradient start color
-	var sceneBgStart = '#8e9ba6';
+	var sceneBgStart = '#ffffff';
 
 	//scene gradient end color
-	var sceneBgEnd = '#5c6975';
+	var sceneBgEnd = '#f3f3f3';
 
 	//preview background color
 	var previewBg = '#2f2f2f';
