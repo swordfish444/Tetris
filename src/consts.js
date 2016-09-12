@@ -1,18 +1,25 @@
-
 //colors for shapes
 var colors = ['#00aee5', '#00aee5', '#00aee5', '#00aee5', '#00aee5', '#00aee5', '#ff963f'];
 
 //sidebar width
-var sideWidth = 55;
+var sideWidth = 50;
+
+var headerHeight = 100;
 
 //scene column count
-var columnCount = 10;
+var columnCount = 8;
 
-//scene row count;
-var rowCount = 14;
+//var canvasWidth = 500;
+//var canvasHeight = 500;
+
+//starting canvas rows
+//as if no people on screen
+var rowCount = 8;
+
+var blockSize = 105;
 
 //previewCount
-var previewCount = 10;
+var previewCount = 5;
 
 //scene gradient start color
 var sceneBgStart = '#f3f3f3';
@@ -39,20 +46,24 @@ var defaultInterval = 600;
 var levelInterval = 120 * 1000;
 
 var person = {
-  height: 55
+    height: 55
 };
 
 var exports = module.exports = {};
 
 exports.PERSON = person;
 
-exports.COLORS =  colors;
+exports.COLORS = colors;
 
 exports.SIDE_WIDTH = sideWidth;
+
+exports.HEADER_HEIGHT = headerHeight;
 
 exports.ROW_COUNT = rowCount;
 
 exports.COLUMN_COUNT = columnCount;
+
+exports.BLOCK_SIZE = blockSize;
 
 exports.SCENE_BG_START = sceneBgStart;
 

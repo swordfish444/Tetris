@@ -1,0 +1,61 @@
+html,
+body {
+    height: 100%;
+    background-color: #eeeeee;
+}
+
+#game-container {
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    background-color: #e6e6e6;
+}
+
+#game-left-side {
+    width: 10%;
+    position: absolute;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #333;
+}
+
+#game-header {
+    height: 15%;
+    position: relative;
+    background-color: #d1c9da;
+}
+
+#game-body {
+    height: 80%;
+    position: relative;
+}
+
+#game-footer {
+    height: 5%;
+    position: relative;
+    background-color: #d1c9da;
+}
+
+#game-body div {
+    height: 10%;
+    position: relative;
+    background-color: #CCC;
+}
+
+.person-row {
+    background-color: #FFF !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.person-row.first {
+    border-top: 2px solid #333333 !important;
+}
+
+.thumbnail-person {
+    background-image: url(images/person-blank.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 10%;
+    height: 100% !important;
+    background-color: #fff !important;
+}

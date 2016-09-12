@@ -13,13 +13,13 @@ body {
 
 #tetris {
     left: 50%;
-    top: 50%;
     position: absolute;
     background: #555;
 }
 
 #scene {
-    height: 100%;
+    top: 100px;
+    right: 0;
     position: absolute;
     background: #2f2f2f;
 }
@@ -56,23 +56,25 @@ body {
     width: 50px !Important;
     background-color: #f3f3f3;
     text-align: center;
+    display: none;
 }
 
 #info {
     position: absolute;
-    height: 60px;
+    height: 100px;
     margin: 0 auto;
     background-color: #e6e6e6;
     z-index: 10000000000;
-    width: 325px;
+    width: 100%;
     right: 0;
 }
 
 #preview {
-    width: 140px;
-    height: 40px;
+    width: 250px;
+    height: 50px;
     position: absolute;
-    right: 30%;
+    right: 37%;
+    top: 20px;
 }
 
 #levelInfo {
@@ -85,15 +87,16 @@ body {
 }
 
 #people {
-  width:100%;
-  position: absolute;
-      bottom: -1.4px;
+    width: 100%;
+    position: absolute;
+    bottom: -1.4px;
 }
+
 #people div {
-  border-top: .5px solid #00aee5;
-  border-radius: 2px;
-  border-right:.5px solid #00aee5;
-  background-color: #e5e9ec;
+    border-top: .5px solid #00aee5;
+    border-radius: 2px;
+    border-right: .5px solid #00aee5;
+    background-color: #e5e9ec;
 }
 
 #level {

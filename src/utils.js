@@ -1,8 +1,7 @@
-
 var exports = module.exports = {};
 
-var $ = function(id){
-	return document.getElementById(id);
+var $ = function(id) {
+    return document.getElementById(id);
 };
 
 
@@ -102,16 +101,16 @@ Number.prototype.format = function(n, x) {
     return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
 };
 
-var proxy = function(fn,context){
-    var args = [].slice.call( arguments, 2 );
+var proxy = function(fn, context) {
+    var args = [].slice.call(arguments, 2);
     proxy = function() {
-            return fn.apply( context || this, args.concat( [].slice.call( arguments ) ) );
+        return fn.apply(context || this, args.concat([].slice.call(arguments)));
     };
     return proxy;
 };
 
 var aniFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 window.requestAnimationFrame = aniFrame;
 
 
