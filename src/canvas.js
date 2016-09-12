@@ -25,6 +25,8 @@ var drawLine = function(ctx,p1,p2,color){
 
 //Draw game grids
 var drawGrids = function(el,gridSize,colCount,rowCount,color1,color2){
+  var people = document.getElementById('people'); //.style.height = peopleCount*person.height + 'px';
+  people.innerHTML = "";
   var ctx = el.getContext('2d');
   var width = el.width;
   var height = el.height;
@@ -55,11 +57,13 @@ var drawGrids = function(el,gridSize,colCount,rowCount,color1,color2){
       peopleCount++;
       var y = gridSize*i+0.5;
       drawLine(ctx,{x:0,y:y},{x:width,y:y},peopleLineColor);
+      let personNode = document.createElement("DIV");                 // Create a <li> node
+      personNode.style.height = person.height - 0.5 + 'px';
+      people.appendChild(personNode);                              // Append the text to <li>
     }
   };
 
-  // update height of people container
-  document.getElementById('people').style.height = peopleCount*person.height + 'px';
+  //people.style.height = peopleCount * person.height + 'px';
 
 };
 

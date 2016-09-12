@@ -58,16 +58,16 @@ var layoutView = function(container,maxW,maxH){
 	st.marginLeft = (-(size.width/2)) + 'px';
 
 	//layout scene
-	scene.height = size.height;
+	scene.height = size.height - 100;
 	scene.width = scene.height / 2;
 
 	var sideW = size.width - scene.width;
 	side.style.width = sideW+ 'px';
 	if (sideW< SIDE_WIDTH ){
-		info.style.width = side.style.width;
+		//info.style.width = side.style.width;
 	}
-	preview.width = 80;
-	preview.height = 80;
+	preview.width = 140;
+	preview.height = 40;
 
 	gameOver.style.width = scene.width +'px';
 
@@ -93,7 +93,7 @@ var tetrisView = {
 	},
 	// Update the score
 	setScore:function(scoreNumber){
-		score.innerHTML = scoreNumber;
+		score.innerHTML = "$" + scoreNumber.format();
 	},
 	// Update the finnal score
 	setFinalScore:function(scoreNumber){

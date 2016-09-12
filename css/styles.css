@@ -1,153 +1,159 @@
-html,body{
-	height:100%;
+html,
+body {
+    height: 100%;
 }
 
-body{
-	background: #3f3f3f;
-	margin:0;
-	padding:0;
-	position: relative;
-	font-family: 'American Typewriter','Marker Felt';
+body {
+    background: #3f3f3f;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: 'American Typewriter', 'Marker Felt';
 }
 
-#tetris{
-	left:50%;
-	top:50%;
-	position: absolute;
-	background: #555;
-
+#tetris {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    background: #555;
 }
 
-#scene{
-	height:100%;
-	position: absolute;
-	background: #2f2f2f;
+#scene {
+    height: 100%;
+    position: absolute;
+    background: #2f2f2f;
 }
 
-#gameOver{
-	height:100%;
-	position: absolute;
-	background:rgba(0,0,0,.75);
-	z-index:999;
-	color:#ffe100;
-	text-align: center;
-	display: none;
+#gameOver {
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, .75);
+    z-index: 999;
+    color: #ffe100;
+    text-align: center;
+    display: none;
 }
 
-#gameOver h1{
-	margin-top:50%;
+#gameOver h1 {
+    margin-top: 50%;
 }
 
-#gameOver a,#gameOver a:visited{
-	color:#66bc29;
-	text-decoration: none;
+#gameOver a,
+#gameOver a:visited {
+    color: #66bc29;
+    text-decoration: none;
 }
 
-#gameOver h3{
-	color:orange;
+#gameOver h3 {
+    color: orange;
 }
 
-#side{
-	height:100%;
-	position: absolute;
-	top:0;
-	right:0;
-	text-align: center;
+#side {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 50px !Important;
+    background-color: #f3f3f3;
+    text-align: center;
 }
 
-#info{
-	width:55px;
-	margin:0 auto;
+#info {
+    position: absolute;
+    height: 60px;
+    margin: 0 auto;
+    background-color: #e6e6e6;
+    z-index: 10000000000;
+    width: 325px;
+    right: 0;
 }
 
-#preview{
-	width:55px;
-	height:55px;
-	background: #2f2f2f;
-	margin:10px auto;
+#preview {
+    width: 140px;
+    height: 40px;
+    position: absolute;
+    right: 30%;
 }
 
-#levelInfo{
-	color:#fff;
-	font-size:18px;
-	margin:10px 0;
+#levelInfo {
+    color: #00000;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    margin-left: 2px;
+    text-align: center;
 }
 
 #people {
-    color: #fff;
-    font-size: 14px;
-    background-color: #ffffff;
-    z-index: 10000000;
-    height: 55px;
-    position: absolute;
-    bottom: 0;
-    width: 55px;
+  width:100%;
+  position: absolute;
+      bottom: -1.4px;
+}
+#people div {
+  border-top: .5px solid #00aee5;
+  border-radius: 2px;
+  border-right:.5px solid #00aee5;
+  background-color: #e5e9ec;
 }
 
-#level{
-	color:orange;
-	font-size:32px;
+#level {
+    color: black;
+    font-size: 20px;
 }
 
-#scoreInfo{
-	color:#fff;
-	font-size: 18px;
-	margin-top:0;
+#scoreInfo {
+    color: #000000;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
 }
 
-#score{
-	color:orange;
-	font-family: 'Chalkboard SE';
+#score {
+    color: black;
+    font-family: 'Chalkboard SE';
 }
 
-#rewardInfo{
-	color:yellow;
-	font-weight: bold;
-	height:20px;
+#rewardInfo {
+    color: yellow;
+    font-weight: bold;
+    height: 20px;
 }
 
-
-
-
-
-.invisible{
-	visibility: hidden;
+.invisible {
+    visibility: hidden;
 }
 
 .animated {
-  -webkit-animation-duration: 1.5s;
-  animation-duration: 1.5s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
-
 @-webkit-keyframes fadeOutUp {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
 }
 
 @keyframes fadeOutUp {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    -ms-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        -ms-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
 }
 
 .fadeOutUp {
-  -webkit-animation-name: fadeOutUp;
-  animation-name: fadeOutUp;
+    -webkit-animation-name: fadeOutUp;
+    animation-name: fadeOutUp;
 }

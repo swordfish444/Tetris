@@ -448,6 +448,16 @@
 	    return target;
 	};
 
+	/**
+	 * Number.prototype.format(n, x)
+	 *
+	 * @param integer n: length of decimal
+	 * @param integer x: length of sections
+	 */
+	Number.prototype.format = function(n, x) {
+	    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+	    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+	};
 
 	var proxy = function(fn,context){
 	    var args = [].slice.call( arguments, 2 );
@@ -488,13 +498,13 @@
 	var previewCount = 10;
 
 	//scene gradient start color
-	var sceneBgStart = '#ffffff';
+	var sceneBgStart = '#f3f3f3';
 
 	//scene gradient end color
 	var sceneBgEnd = '#f3f3f3';
 
 	//preview background color
-	var previewBg = '#2f2f2f';
+	var previewBg = '#e6e6e6';
 
 	//grid line color
 	var gridLineColor = 'rgba(233,233,233,0.2)';
@@ -818,16 +828,16 @@
 		st.marginLeft = (-(size.width/2)) + 'px';
 
 		//layout scene
-		scene.height = size.height;
+		scene.height = size.height - 100;
 		scene.width = scene.height / 2;
 
 		var sideW = size.width - scene.width;
 		side.style.width = sideW+ 'px';
 		if (sideW< SIDE_WIDTH ){
-			info.style.width = side.style.width;
+			//info.style.width = side.style.width;
 		}
-		preview.width = 80;
-		preview.height = 80;
+		preview.width = 140;
+		preview.height = 40;
 
 		gameOver.style.width = scene.width +'px';
 
@@ -853,7 +863,7 @@
 		},
 		// Update the score
 		setScore:function(scoreNumber){
-			score.innerHTML = scoreNumber;
+			score.innerHTML = "$" + scoreNumber.format();
 		},
 		// Update the finnal score
 		setFinalScore:function(scoreNumber){
@@ -912,6 +922,8 @@
 
 	//Draw game grids
 	var drawGrids = function(el,gridSize,colCount,rowCount,color1,color2){
+	  var people = document.getElementById('people'); //.style.height = peopleCount*person.height + 'px';
+	  people.innerHTML = "";
 	  var ctx = el.getContext('2d');
 	  var width = el.width;
 	  var height = el.height;
@@ -942,11 +954,13 @@
 	      peopleCount++;
 	      var y = gridSize*i+0.5;
 	      drawLine(ctx,{x:0,y:y},{x:width,y:y},peopleLineColor);
+	      let personNode = document.createElement("DIV");                 // Create a <li> node
+	      personNode.style.height = person.height - 0.5 + 'px';
+	      people.appendChild(personNode);                              // Append the text to <li>
 	    }
 	  };
 
-	  // update height of people container
-	  document.getElementById('people').style.height = peopleCount*person.height + 'px';
+	  //people.style.height = peopleCount * person.height + 'px';
 
 	};
 
