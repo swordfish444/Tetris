@@ -104,3 +104,7 @@ body {
     background-color: #fff !important;
     display: none;
 }
+
+.selected-person > div {
+    background-color: #e5e5ff !important;
+}
