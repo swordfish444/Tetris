@@ -1,14 +1,15 @@
 $(document).ready(function() {
+    console.log('starting game');
     var game = new Game({ debug: true })
     game.start();
 });
 
 function Game(options = {}) {
     var self = this;
+    this.state = "gameover";
     this.block = { x: -1, y: -1, size: 0, land: false };
     this.settings = {
-        DROP_INTERVAL: 1000, // interval which block automatically moves downwards
-        GAME_INTERVAL: 20
+        DROP_INTERVAL: 1000 // interval which block automatically moves downwards
     };
     this.people = [];
     this.selected_index = 0;
@@ -22,6 +23,7 @@ function Game(options = {}) {
 Game.prototype.start = function() {
     var self = this;
     self.initializeGame(DEMO);
+    self.state = "running";
 }
 
 Game.prototype.initializeGame = function(is_demo) {
@@ -31,6 +33,8 @@ Game.prototype.initializeGame = function(is_demo) {
     self.initializeGrid();
     self.initializeGameLoop();
     selectPerson(self.selected_index);
+    bindEvents(self);
+    self.spawn();
 }
 
 Game.prototype.initializeLevel = function(level) {
@@ -43,25 +47,29 @@ Game.prototype.initializeGrid = function() {
     var self = this;
     var firstPerson = false;
     var firstRow = false;
-    var divs = [];
-    _(10).times(function(n) { divs.push('<div class="grid-block"></div>') });
+    var divs = {};
+    _(NUMBER_ROWS).times(function(y) {
+        divs[y] = [];
+        _(NUMBER_DAYS).times(function(x) { divs[y].push(`<div id="${y}-${x}" class="grid-block"></div>`) });
+    })
+
 
     $('#game-body').html('');
     for (let i = 0; i < NUMBER_ROWS; i++) {
         if (i >= NUMBER_ROWS - self.people.length) {
             if (firstPerson != true) {
-                $('#game-body').append('<div class="row person first"><div class="person-zone"><div class="thumbnail-person"></div></div><div class="play-zone">' + divs.join("") + '</div></div>');
+                $('#game-body').append('<div class="row person first"><div class="person-zone"><div class="thumbnail-person"></div></div><div class="play-zone">' + divs[i].join("") + '</div></div>');
                 firstPerson = true;
             } else {
-                $('#game-body').append('<div class="row person"><div class="person-zone"><div class="thumbnail-person"></div></div><div class="play-zone">' + divs.join("") + '</div></div>');
+                $('#game-body').append('<div class="row person"><div class="person-zone"><div class="thumbnail-person"></div></div><div class="play-zone">' + divs[i].join("") + '</div></div>');
             }
 
         } else {
             if (firstRow != true) {
-                $('#game-body').append('<div class="row grid-row first-row"><div class="dead-zone"><div class="dotted-line"></div></div><div class="play-zone">' + divs.join("") + '</div></div>');
+                $('#game-body').append('<div class="row grid-row first-row"><div class="dead-zone"></div><div class="play-zone">' + divs[i].join("") + '</div></div>');
                 firstRow = true;
             } else {
-                $('#game-body').append('<div class="row grid-row"><div class="dead-zone"><div class="dotted-line"></div></div><div class="play-zone">' + divs.join("") + '</div></div>');
+                $('#game-body').append('<div class="row grid-row"><div class="dead-zone"></div><div class="play-zone">' + divs[i].join("") + '</div></div>');
             }
         }
     }
@@ -82,27 +90,27 @@ Game.prototype.initializePeople = function(amount) {
 
 Game.prototype.initializeGameLoop = function() {
     var self = this;
-    self.interval_id_game = setInterval(function() {
-        self.gameLoop();
-    }, self.settings.GAME_INTERVAL);
 }
 
 Game.prototype.spawn = function() {
     var self = this;
     var size = Math.floor(Math.random() * 5) + 1;
     var x = Math.floor(Math.random() * (10 - size)) + 1;
+    self.block.x = x;
+    self.block.y = 1;
+
     self.setBlock(size, x, 1);
     self.block = { x: x, y: 1, size: size, land: false };
 
+    clearInterval(self.interval_id_block);
     // clear previous drop interval
-    clearInterval(self.interval_id);
-    // create new drop interval
-    self.interval_id = setInterval(function() {
-        move('down');
+    self.interval_id_block = setInterval(function() {
+        self.move('down');
     }, self.settings.DROP_INTERVAL);
 }
 
 Game.prototype.move = function(direction) {
+    console.log('moving down')
     var self = this;
     switch (direction) {
         case 'left':
@@ -115,29 +123,35 @@ Game.prototype.move = function(direction) {
             self.setBlock(self.block.size, self.block.x, self.block.y + 1);
             break;
         case 'drop':
-            self.setBlock(self.block.size, self.block.x, 10);
+            self.setBlock(self.block.size, self.block.x, lastRow(self.people.length));
             break;
+
     }
-    return;
 }
 
 Game.prototype.setBlock = function(size, x, y) {
     var self = this;
+    var last = lastRow(self.people.length);
+
     // check if trying to move off grid
     if (x < 0 || (x + size) > 10) return false;
 
-    if (y >= 10) {
-        y = 10;
-        self.block.land = true;
+    if (y >= last) {
+        y = last;
+        self.block.y = last;
+        self.assignBlock();
+        self.spawn();
+        return true;
     }
 
-    // clear blocks
-    $(' .grid-row > .play-zone > div').removeClass('assignment');
+    // clear existing block locations
+    for (let x1 = self.block.x; x1 < self.block.x + self.block.size; x1++) {
+        $(`#${self.block.y}-${x1}`).removeClass('assignment');
+    }
 
-    for (let i = 0; i < size; i++) {
-        // add class to blocks
-        let index = x + i;
-        $(`.grid-row:nth-child(${y}) > .play-zone > div:nth-child(${index})`).addClass('assignment');
+    // add updated block locations
+    for (let x2 = x; x2 < x + size; x2++) {
+        $(`#${y}-${x2}`).addClass('assignment');
     }
 
     self.block.x = x;
@@ -175,11 +189,21 @@ Game.prototype.updateAssignments = function() {
     var person = _.clone(self.people[self.selected_index]);
 
     var valid = false;
-    for (let j = 0; j < person.assignments.length && valid === false; j++) {
-        let overlap = false;
-        for (let i = x; i < (x + size); i++) {
-            if (person.assignments[j][i] !== 0) overlap = true;
+    var count = 0;
+    var len = person.assignments.length;
+    for (let j = 0; j < len && valid === false; j++) {
+        if (count > 5) {
+            console.error('Never ending loop!', j);
+            return;
         }
+        var overlap = false;
+        for (let i = x; i < x + size; i++) {
+            console.log(`assignments[${j}][${i}] => ${person.assignments[j][i]}`);
+            if (person.assignments[j][i] == 1) {
+                overlap = true;
+            }
+        }
+
         // check if overlap found
         if (overlap) {
             // check if this is the last assignment row
@@ -192,6 +216,7 @@ Game.prototype.updateAssignments = function() {
             person.assignments[j] = insertAssignmentIntoArray(x, size, person.assignments[j]);
             valid = true; // set flag to exit signify success
         }
+        count++;
         // proceed to next assignment row
     }
 
@@ -200,16 +225,14 @@ Game.prototype.updateAssignments = function() {
 
 Game.prototype.assignBlock = function() {
     var self = this;
-    clearGrid();
     self.updateAssignments();
+    clearGrid(self.block);
+    self.block.x = 0;
+    self.block.y = 0;
     renderAssignments(self.people);
 }
 
 Game.prototype.gameLoop = function() {
     var self = this;
 
-    // block landed -- assign to person
-    if (self.block.land === true) self.assignBlock();
-
-    // other???
 }

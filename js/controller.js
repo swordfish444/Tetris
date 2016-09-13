@@ -13,10 +13,48 @@ function selectPerson(index) {
 
 }
 
-function clearGrid() {
-    $(' .grid-row > .play-zone > div').removeClass('assignment');
+function clearGrid(block) {
+    $('.assignment').removeClass('assignment');
 }
 
 function renderAssignments(people) {
+    return;
+}
 
+function keyDownHandler(game) {
+
+    if (!e) {
+        var e = window.event;
+    }
+    console.log('event', e);
+    if (game.state !== "running") {
+        //return;
+    }
+
+    switch (e.keyCode) {
+        case 37:
+            console.log('left arrow')
+            game.move("left");
+            break;
+
+        case 39:
+            console.log('right arrow')
+            game.move("right");
+
+            break;
+
+        case 40:
+            game.move("down");
+            break;
+
+        case 32:
+            game.move("drop");
+            break;
+    }
+}
+
+function bindEvents(game) {
+    window.addEventListener('keydown', function() {
+        keyDownHandler(game);
+    }, true);
 }

@@ -12,6 +12,8 @@ function createAssignmentArray(x, size) {
             }
         }
     });
+
+    console.log('creating assignment array', result);
     // returns an array of 0's and 1's ( i.e.  [0,0,0,1,1,0,0,0,0,0] )
     return result;
 }
@@ -24,4 +26,17 @@ function insertAssignmentIntoArray(x, size, arr) {
         }
     }
     return arr;
+}
+
+function proxyInput(fn, context) {
+    var args = [].slice.call(arguments, 2);
+    proxy = function() {
+        return fn.apply(context || this, args.concat([].slice.call(arguments)));
+    };
+    return proxy;
+};
+
+function lastRow(len) {
+    var result = NUMBER_ROWS - len;
+    return result;
 }
