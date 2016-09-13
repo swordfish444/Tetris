@@ -42,15 +42,24 @@ body {
     background-color: #fff;
 }
 
-.assignment-block {}
+.assignment {
+    background-color: #00aee5 !important;
+}
+
+.grid-block {
+    border: 1px solid #f3f3f3;
+    width: 10%;
+    display: inline-block;
+    height: 100%;
+}
 
 .dead-zone {
-    content: '|';
     color: #333;
     text-align: center;
     height: 100%;
     width: 10%;
     max-width: 80px;
+    display: inline-block;
 }
 
 .row.person {
@@ -70,6 +79,7 @@ body {
     height: 100%;
     width: 90%;
     display: inline-block;
+    position: relative;
 }
 
 .row.person.first {
@@ -92,4 +102,5 @@ body {
     background-repeat: repeat-y;
     height: 100% !important;
     background-color: #fff !important;
+    display: none;
 }
