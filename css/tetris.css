@@ -4,10 +4,15 @@ body {
     background-color: #eeeeee;
 }
 
+@viewport {
+    width: 270px;
+    height: 480px;
+}
+
 #game-container {
     overflow-y: auto;
     width: 540px;
-    height: 960px;
+    max-height: 960px;
     background-color: #fff;
 }
 
@@ -20,7 +25,7 @@ body {
 }
 
 #game-header {
-    height: 15%;
+    height: 100px;
     position: relative;
     background-color: #e6e6e6;
 }
@@ -59,7 +64,6 @@ body {
     text-align: center;
     height: 50px;
     width: 40px;
-    max-width: 80px;
     display: inline-block;
 }
 
