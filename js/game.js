@@ -97,10 +97,10 @@ Game.prototype.spawn = function() {
     var size = Math.floor(Math.random() * 5) + 1;
     var x = Math.floor(Math.random() * (10 - size)) + 1;
     self.block.x = x;
-    self.block.y = 1;
+    self.block.y = 0;
 
-    self.setBlock(size, x, 1);
-    self.block = { x: x, y: 1, size: size, land: false };
+    self.setBlock(size, x, 0);
+    self.block = { x: x, y: 0, size: size, land: false };
 
     clearInterval(self.interval_id_block);
     // clear previous drop interval

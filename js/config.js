@@ -1,6 +1,6 @@
 const DEMO = true; // DEMO mode is automated
 const DEBUG = true; // DEBUG mode for logging + grid lines
-const NUMBER_ROWS = 10;
+const NUMBER_ROWS = 14;
 const NUMBER_DAYS = 10;
 
 const LEVEL_MAP = {
