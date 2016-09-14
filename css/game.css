@@ -5,8 +5,8 @@ body {
 }
 
 @viewport {
-    width: 270px;
-    height: 480px;
+    width: 540px;
+    height: 960px;
 }
 
 #game-container {
